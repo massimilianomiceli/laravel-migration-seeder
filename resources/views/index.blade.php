@@ -9,11 +9,24 @@
 </head>
 
 <body>
-    <ul>
-        @foreach ($trains as $train)
-            <li>{{ $train['departure_time'] }}</li>
-        @endforeach
-    </ul>
+
+    <div class="container py-4">
+        <h1 class="mb-4">Treni in partenza</h1>
+
+        <div class="row g-4">
+            @forelse ($trains as $train)
+                <div class="col-12 col-md-6 col-lg-4">
+                    <x-train-card :train="$train" />
+                </div>
+            @empty
+                <div class="col-12">
+                    <div class="alert alert-info">
+                        Non ci sono treni in partenza da oggi in avanti.
+                    </div>
+                </div>
+            @endforelse
+        </div>
+    </div>
 
 </body>
 
